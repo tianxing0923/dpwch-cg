@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="author" content="erictian">
+    <meta name="description" content="Grace欲跟曹格上YY，寂寞先生给你好看">
+    <title>Grace欲跟曹格上YY，寂寞先生给你好看</title>
+    <!-- build:inlinecss -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- endbuild -->
+</head>
+<body>
+    <div class="container">
+        <div id="page_wrap" class="page-wrap">
+            <section class="page first">
+                <div class="arrow"></div>
+            </section>
+            <section class="page second">
+                <div class="arrow"></div>
+            </section>
+            <section class="page third">
+                <div class="arrow"></div>
+            </section>
+            <section class="page fourth">
+                <div class="arrow"></div>
+            </section>
+            <section class="page fifth">
+                <a class="lnk-advance" href="http://fun.yy.com/html/publish/1604/325853488503.html"></a>
+            </section>
+        </div>
+    </div>
+    <!-- build:js js/app.js -->
+    <script src="js/zepto/zepto.js"></script>
+    <script src="js/zepto/ajax.js"></script>
+    <script src="js/zepto/event.js"></script>
+    <script src="js/fullpage.js"></script>
+    <!-- endbuild -->
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        $('#page_wrap').fullpage();
+
+        // 分享参数
+        var SHARE_OBJ = {
+            title: 'Grace欲跟曹格上YY，寂寞先生给你好看',
+            desc: '一个等待了十年的约会 5月8日 晚八点 就等你来！',
+            link: location.href,
+            imgUrl: 'http://www.ttthing.com/weixin/yy_xxx/images/thumbnail.png',
+            success: function () { }
+        };
+
+        // 初始化分享
+        function initShare() {
+            $.ajax({
+                url: 'http://www.ttthing.com/cgi/yy_game/ticket/',
+                type: 'GET',
+                data: {
+                    url: location.href
+                },
+                dataType: 'json',
+                success: function (data) {
+                    wx.config({
+                        appId: data.appId,
+                        timestamp: data.timestamp,
+                        nonceStr: data.nonceStr,
+                        signature: data.signature,
+                        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone']
+                    });
+
+                    wx.ready(function () {
+
+                        // 分享到朋友圈
+                        wx.onMenuShareTimeline(SHARE_OBJ);
+
+                        // 分享给朋友
+                        wx.onMenuShareAppMessage(SHARE_OBJ);
+
+                        // 分享到QQ
+                        wx.onMenuShareQQ(SHARE_OBJ);
+
+                        // 分享到腾讯微博
+                        wx.onMenuShareWeibo(SHARE_OBJ);
+
+                        // 分享到QQ空间
+                        wx.onMenuShareQZone(SHARE_OBJ);
+                    });
+                }
+            });
+        }
+
+        initShare();
+    </script>
+</body>
+</html>
