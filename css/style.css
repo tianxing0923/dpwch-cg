@@ -34,6 +34,30 @@
     transform: translate(0, -5px);
   }
 }
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
 * {
   box-sizing: border-box;
   outline: 0;
@@ -46,6 +70,16 @@ body {
   height: 100%;
   font-size: 62.5%;
   text-align: center;
+}
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
 }
 .container {
   position: absolute;
@@ -72,47 +106,75 @@ body {
   position: relative;
   display: block;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+  background-size: auto 100%;
+}
+.page.cur .title {
+  opacity: 1;
+}
+.page .title {
+  margin-top: 5%;
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+  background-size: auto 100%;
+  opacity: 0;
 }
 .page .arrow {
   position: absolute;
   left: 50%;
   bottom: 30px;
-  margin-left: -17px;
+  margin-left: -10px;
   margin-top: -34px;
   width: 19px;
   height: 12px;
-  background: url(../images/arrow.png) no-repeat 50% 100%;
+  background: url(images/arrow.png) no-repeat 50% 100%;
   background-size: auto 100% !important;
   -webkit-animation: arrow 1.5s infinite ease-in-out;
   animation: arrow 1.5s infinite ease-in-out;
 }
 .first {
-  background: url(../images/bg_1.jpg) 50% 100%;
-  background-size: 100% !important;
+  background-image: url(images/bg_1.jpg);
+}
+.first .title {
+  height: 155.5px;
+  background-image: url(images/title_1.png);
 }
 .second {
-  background: url(../images/bg_2.jpg) 50% 100%;
-  background-size: 100% !important;
+  background-image: url(images/bg_2.jpg);
+}
+.second .title {
+  height: 171px;
+  background-image: url(images/title_2.png);
 }
 .third {
-  background: url(../images/bg_3.jpg) 50% 100%;
-  background-size: 100% !important;
+  background-image: url(images/bg_3.jpg);
+}
+.third .title {
+  height: 179.5px;
+  background-image: url(images/title_3.png);
 }
 .fourth {
-  background: url(../images/bg_4.jpg) 50% 100%;
-  background-size: 100% !important;
+  background-image: url(images/bg_4.jpg);
+}
+.fourth .title {
+  height: 132px;
+  background-image: url(images/title_4.png);
 }
 .fifth {
-  background: url(../images/bg_5.jpg) 50% 100%;
-  background-size: 100% !important;
+  background-image: url(images/bg_5.jpg);
+}
+.fifth .title {
+  height: 204px;
+  background-image: url(images/title_5.png);
 }
 .fifth .lnk-advance {
   position: absolute;
-  top: 38%;
+  top: 34%;
   left: 10%;
   display: block;
   width: 80px;
   height: 97px;
-  background: url(../images/advance.png) no-repeat 50% 100%;
+  background: url(images/advance.png) no-repeat 50% 100%;
   background-size: auto 100% !important;
 }

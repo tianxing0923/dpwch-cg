@@ -15,80 +15,74 @@
     <div class="container">
         <div id="page_wrap" class="page-wrap">
             <section class="page first">
+                <div class="title animated fadeInDown"></div>
                 <div class="arrow"></div>
             </section>
             <section class="page second">
+                <div class="title animated"></div>
                 <div class="arrow"></div>
             </section>
             <section class="page third">
+                <div class="title animated"></div>
                 <div class="arrow"></div>
             </section>
             <section class="page fourth">
+                <div class="title animated"></div>
                 <div class="arrow"></div>
             </section>
             <section class="page fifth">
+                <div class="title animated"></div>
                 <a class="lnk-advance" href="http://fun.yy.com/html/publish/1604/325853488503.html"></a>
             </section>
         </div>
     </div>
     <!-- build:js js/app.js -->
     <script src="js/zepto/zepto.js"></script>
-    <script src="js/zepto/ajax.js"></script>
     <script src="js/zepto/event.js"></script>
     <script src="js/fullpage.js"></script>
     <!-- endbuild -->
     <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="http://www.ttthing.com/cgi/yy_game/ticket/?url=http://www.ttthing.com/weixin/yy_caoge/"></script>
     <script>
-        $('#page_wrap').fullpage();
+        $('#page_wrap').fullpage({
+            afterChange: function (e) {
+                var $title = $('.title');
+                $title.eq(e.prev).removeClass('fadeInDown');
+                $title.eq(e.cur).addClass('fadeInDown');
+            }
+        });
 
         // 分享参数
         var SHARE_OBJ = {
             title: 'Grace欲跟曹格上YY，寂寞先生给你好看',
             desc: '一个等待了十年的约会 5月8日 晚八点 就等你来！',
             link: location.href,
-            imgUrl: 'http://www.ttthing.com/weixin/yy_xxx/images/thumbnail.png',
-            success: function () { }
+            imgUrl: 'http://www.ttthing.com/weixin/yy_caoge/images/thumbnail.png',
+            success: function() {}
         };
 
         // 初始化分享
         function initShare() {
-            $.ajax({
-                url: 'http://www.ttthing.com/cgi/yy_game/ticket/',
-                type: 'GET',
-                data: {
-                    url: location.href
-                },
-                dataType: 'json',
-                success: function (data) {
-                    wx.config({
-                        appId: data.appId,
-                        timestamp: data.timestamp,
-                        nonceStr: data.nonceStr,
-                        signature: data.signature,
-                        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone']
-                    });
-
-                    wx.ready(function () {
-
-                        // 分享到朋友圈
-                        wx.onMenuShareTimeline(SHARE_OBJ);
-
-                        // 分享给朋友
-                        wx.onMenuShareAppMessage(SHARE_OBJ);
-
-                        // 分享到QQ
-                        wx.onMenuShareQQ(SHARE_OBJ);
-
-                        // 分享到腾讯微博
-                        wx.onMenuShareWeibo(SHARE_OBJ);
-
-                        // 分享到QQ空间
-                        wx.onMenuShareQZone(SHARE_OBJ);
-                    });
-                }
+            wx.config({
+                appId: wx_conf.appId,
+                timestamp: wx_conf.timestamp,
+                nonceStr: wx_conf.nonceStr,
+                signature: wx_conf.signature,
+                jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone']
+            });
+            wx.ready(function() {
+                // 分享到朋友圈
+                wx.onMenuShareTimeline(SHARE_OBJ);
+                // 分享给朋友
+                wx.onMenuShareAppMessage(SHARE_OBJ);
+                // 分享到QQ
+                wx.onMenuShareQQ(SHARE_OBJ);
+                // 分享到腾讯微博
+                wx.onMenuShareWeibo(SHARE_OBJ);
+                // 分享到QQ空间
+                wx.onMenuShareQZone(SHARE_OBJ);
             });
         }
-
         initShare();
     </script>
 </body>
