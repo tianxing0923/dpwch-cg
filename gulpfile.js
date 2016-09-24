@@ -33,7 +33,7 @@ gulp.task('image', function () {
 
 // 整体打包
 gulp.task('dist', ['less', 'image'], function () {
-    gulp.src('*.mp4')
+    gulp.src('*.mp3')
         .pipe(gulp.dest('dist'));
 
     return gulp.src('*.html')
